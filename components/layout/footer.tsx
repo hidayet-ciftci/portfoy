@@ -44,7 +44,7 @@ export function Footer() {
         </div>
 
         <p className="text-sm text-zinc-600">
-          © {year} {personalInfo.name.split(" ")[0]}. Built with Next.js.
+          © {year} {personalInfo.name}.
         </p>
       </div>
     </footer>
