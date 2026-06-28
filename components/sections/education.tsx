@@ -1,19 +1,21 @@
 "use client";
 
 import { Award, GraduationCap } from "lucide-react";
-import { certificates, education } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/effects/fade-in";
 import { Card, CardContent } from "@/components/ui/card";
 
 export function EducationSection() {
+  const { t } = useI18n();
+
   return (
     <section id="education" className="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Education"
-          title="Academic background"
-          description="Foundation in computer engineering with strong GPA and continuous practical learning."
+          eyebrow={t.education.eyebrow}
+          title={t.education.title}
+          description={t.education.description}
         />
 
         <FadeIn>
@@ -25,23 +27,23 @@ export function EducationSection() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-zinc-100">
-                    {education.school}
+                    {t.education.school}
                   </h3>
-                  <p className="mt-1 text-zinc-400">{education.degree}</p>
+                  <p className="mt-1 text-zinc-400">{t.education.degree}</p>
                   <p className="mt-2 font-mono text-sm text-zinc-500">
-                    {education.period}
+                    {t.education.period}
                   </p>
                 </div>
               </div>
 
               <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-6 py-4 text-center">
                 <p className="text-xs font-medium uppercase tracking-wider text-emerald-400">
-                  GPA
+                  {t.education.gpaLabel}
                 </p>
                 <p className="mt-1 text-3xl font-bold text-zinc-100">
-                  {education.gpa.split(" ")[0]}
+                  {t.education.gpa.split(" ")[0]}
                 </p>
-                <p className="text-sm text-zinc-500">out of 4.00</p>
+                <p className="text-sm text-zinc-500">{t.education.outOf}</p>
               </div>
             </CardContent>
           </Card>
@@ -52,6 +54,8 @@ export function EducationSection() {
 }
 
 export function CertificatesSection() {
+  const { t } = useI18n();
+
   return (
     <section
       id="certificates"
@@ -59,13 +63,13 @@ export function CertificatesSection() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Certificates"
-          title="Credentials & certifications"
-          description="Formal training and international experience credentials."
+          eyebrow={t.certificates.eyebrow}
+          title={t.certificates.title}
+          description={t.certificates.description}
         />
 
         <StaggerContainer className="grid gap-4 sm:grid-cols-2">
-          {certificates.map((cert) => (
+          {t.certificates.items.map((cert) => (
             <StaggerItem key={cert}>
               <Card className="transition hover:border-emerald-500/20">
                 <CardContent className="flex items-center gap-4 p-5">

@@ -2,12 +2,14 @@
 
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
-import { experience } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/effects/fade-in";
 
 export function ExperienceSection() {
+  const { t } = useI18n();
+
   return (
     <section
       id="experience"
@@ -15,9 +17,9 @@ export function ExperienceSection() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Experience"
-          title="Professional journey"
-          description="Internship experience across enterprise web, mobile, and full-stack development."
+          eyebrow={t.experience.eyebrow}
+          title={t.experience.title}
+          description={t.experience.description}
         />
 
         <div className="relative">
@@ -27,7 +29,7 @@ export function ExperienceSection() {
           />
 
           <div className="space-y-8">
-            {experience.map((job, index) => (
+            {t.experience.items.map((job, index) => (
               <FadeIn key={job.id} delay={index * 0.08}>
                 <article className="relative flex gap-6 sm:gap-8">
                   <div className="relative z-10 hidden shrink-0 sm:block">

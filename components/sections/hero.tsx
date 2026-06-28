@@ -10,10 +10,13 @@ import {
 } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons/social-icons";
 import { personalInfo } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { Button } from "@/components/ui/button";
 import { CvDownloadButton } from "@/components/cv-download-button";
 
 export function HeroSection() {
+  const { t } = useI18n();
+
   return (
     <section
       id="hero"
@@ -27,7 +30,7 @@ export function HeroSection() {
           className="max-w-3xl"
         >
           <p className="mb-4 font-mono text-sm text-emerald-400">
-            Hi, my name is
+            {t.hero.greeting}
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight text-zinc-50 sm:text-6xl lg:text-7xl">
@@ -38,19 +41,17 @@ export function HeroSection() {
           </h1>
 
           <h2 className="mt-4 text-2xl font-semibold text-zinc-300 sm:text-3xl lg:text-4xl">
-            {personalInfo.title}
+            {t.personal.title}
           </h2>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-400">
-            I build scalable web & mobile applications — from React and Next.js
-            frontends to ASP.NET Core backends and AI-powered systems with Hybrid
-            RAG.
+            {t.hero.tagline}
           </p>
 
           <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-zinc-500">
             <span className="flex items-center gap-1.5">
               <MapPin className="h-4 w-4 text-emerald-500/70" aria-hidden />
-              {personalInfo.location}
+              {t.personal.location}
             </span>
             <span className="flex items-center gap-1.5">
               <Mail className="h-4 w-4 text-emerald-500/70" aria-hidden />
@@ -70,11 +71,11 @@ export function HeroSection() {
           className="mt-10 flex flex-wrap gap-4"
         >
           <Button asChild size="lg">
-            <a href="#projects">View my work</a>
+            <a href="#projects">{t.hero.viewWork}</a>
           </Button>
           <CvDownloadButton size="lg" variant="outline">
             <Download className="h-4 w-4" />
-            Download CV
+            {t.hero.downloadCv}
           </CvDownloadButton>
         </motion.div>
 
@@ -89,20 +90,20 @@ export function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-300 transition hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-300"
-            aria-label="Visit GitHub profile"
+            aria-label={t.hero.githubAria}
           >
             <GitHubIcon className="h-4 w-4" />
-            GitHub
+            {t.hero.githubLabel}
           </a>
           <a
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-300 transition hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-300"
-            aria-label="Visit LinkedIn profile"
+            aria-label={t.hero.linkedinAria}
           >
             <LinkedInIcon className="h-4 w-4" />
-            LinkedIn
+            {t.hero.linkedinLabel}
           </a>
         </motion.div>
       </div>
@@ -113,7 +114,7 @@ export function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.5 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500 transition hover:text-emerald-400"
-        aria-label="Scroll to about section"
+        aria-label={t.hero.scrollToAbout}
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

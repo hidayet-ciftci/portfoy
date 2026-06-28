@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { AppProviders } from "@/components/providers/app-providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,20 +16,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Hidayet Çiftçi | Junior Full Stack Developer",
   description:
-    "Portfolio of Hidayet Çiftçi — Junior Full Stack Developer specializing in React, Next.js, ASP.NET Core, and AI-powered applications with Hybrid RAG.",
+    "Hidayet Çiftçi'nin portföyü — React, Next.js, ASP.NET Core ve Hybrid RAG ile yapay zeka destekli uygulamalarda uzmanlaşan Junior Full Stack Developer.",
   keywords: [
     "Hidayet Çiftçi",
     "Full Stack Developer",
     "React",
     "Next.js",
     "ASP.NET Core",
-    "Portfolio",
+    "Portföy",
   ],
   authors: [{ name: "Hidayet Çiftçi" }],
   openGraph: {
     title: "Hidayet Çiftçi | Junior Full Stack Developer",
     description:
-      "Computer Engineering graduate building scalable web, mobile, and AI-powered applications.",
+      "Ölçeklenebilir web, mobil ve yapay zeka destekli uygulamalar geliştiren Bilgisayar Mühendisliği mezunu.",
     type: "website",
   },
 };
@@ -40,10 +41,20 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="tr"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} dark h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full bg-[#030712] text-zinc-100">{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var k='portfolio-locale';var s=localStorage.getItem(k);var n=navigator.language.toLowerCase();var l=s||(n.startsWith('en')?'en':n.startsWith('tr')?'tr':'tr');document.documentElement.lang=l;}catch(e){document.documentElement.lang='tr';}})();`,
+          }}
+        />
+      </head>
+      <body className="min-h-full bg-[#030712] text-zinc-100">
+        <AppProviders>{children}</AppProviders>
+      </body>
     </html>
   );
 }

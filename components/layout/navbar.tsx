@@ -3,11 +3,14 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { navLinks, personalInfo } from "@/lib/data";
+import { personalInfo } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 
 export function Navbar() {
+  const { t } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -16,7 +19,7 @@ export function Navbar() {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
+      const sections = t.nav.links.map((l) => l.href.replace("#", ""));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.getBoundingClientRect().top <= 120) {
@@ -29,7 +32,7 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [t.nav.links]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -49,7 +52,7 @@ export function Navbar() {
     >
       <nav
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8"
-        aria-label="Main navigation"
+        aria-label={t.nav.mainNav}
       >
         <a
           href="#"
@@ -65,8 +68,8 @@ export function Navbar() {
           <span className="hidden sm:inline">{personalInfo.name.split(" ")[0]}</span>
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => {
+        <ul className="hidden items-center gap-1 lg:flex">
+          {t.nav.links.map((link) => {
             const id = link.href.replace("#", "");
             return (
               <li key={link.href}>
@@ -86,21 +89,25 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <LanguageSwitcher />
           <Button asChild size="sm" variant="outline">
-            <a href="#contact">Get in touch</a>
+            <a href="#contact">{t.nav.getInTouch}</a>
           </Button>
         </div>
 
-        <button
-          type="button"
-          className="rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-zinc-100 md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            className="rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-zinc-100"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -109,10 +116,10 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-b border-white/5 bg-[#030712]/95 backdrop-blur-xl md:hidden"
+            className="border-b border-white/5 bg-[#030712]/95 backdrop-blur-xl lg:hidden"
           >
             <ul className="flex flex-col gap-1 px-4 py-4">
-              {navLinks.map((link) => (
+              {t.nav.links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -126,7 +133,7 @@ export function Navbar() {
               <li className="pt-2">
                 <Button asChild className="w-full" variant="outline">
                   <a href="#contact" onClick={() => setMobileOpen(false)}>
-                    Get in touch
+                    {t.nav.getInTouch}
                   </a>
                 </Button>
               </li>

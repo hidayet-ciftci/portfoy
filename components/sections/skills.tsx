@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { skillCategories } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/effects/fade-in";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -27,17 +27,19 @@ function SkillBar({ name, level }: { name: string; level: number }) {
 }
 
 export function SkillsSection() {
+  const { t } = useI18n();
+
   return (
     <section id="skills" className="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Technical Skills"
-          title="Technologies I work with"
-          description="Grouped by domain — from frontend frameworks to AI infrastructure."
+          eyebrow={t.skills.eyebrow}
+          title={t.skills.title}
+          description={t.skills.description}
         />
 
         <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {skillCategories.map((category) => (
+          {t.skills.categories.map((category) => (
             <StaggerItem key={category.title}>
               <Card className="h-full transition hover:border-emerald-500/20">
                 <CardHeader className="pb-4">
@@ -59,8 +61,7 @@ export function SkillsSection() {
 
         <FadeIn delay={0.2}>
           <p className="mt-8 text-center text-sm text-zinc-600">
-            Proficiency levels reflect practical experience from internships and
-            personal projects — not self-assessment inflation.
+            {t.skills.disclaimer}
           </p>
         </FadeIn>
       </div>

@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
-import { internshipJourney } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/effects/fade-in";
 
 export function InternshipSection() {
+  const { t } = useI18n();
+
   return (
     <section
       id="internship"
@@ -14,9 +16,9 @@ export function InternshipSection() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Internship Journey"
-          title="From Erasmus to enterprise"
-          description="A progressive path through four internships — from international collaboration to full-stack enterprise development."
+          eyebrow={t.internship.eyebrow}
+          title={t.internship.title}
+          description={t.internship.description}
         />
 
         <div className="relative mt-4">
@@ -26,7 +28,7 @@ export function InternshipSection() {
           />
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {internshipJourney.map((step, index) => (
+            {t.internship.steps.map((step, index) => (
               <FadeIn key={step.company} delay={index * 0.1}>
                 <motion.div
                   whileHover={{ y: -4 }}

@@ -1,73 +1,9 @@
 "use client";
 
-import {
-  certificates,
-  education,
-  experience,
-  featuredProjects,
-  aiProjects,
-  interests,
-  languages,
-  personalInfo,
-  summary,
-  skillCategories,
-} from "@/lib/data";
+import { personalInfo } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-function generateCvText(): string {
-  const lines: string[] = [
-    personalInfo.name.toUpperCase(),
-    personalInfo.title,
-    `${personalInfo.location} | ${personalInfo.email} | ${personalInfo.phone}`,
-    `${personalInfo.linkedin} | ${personalInfo.github}`,
-    "",
-    "PROFESSIONAL SUMMARY",
-    ...summary.map((s) => `- ${s}`),
-    "",
-    "EDUCATION",
-    `${education.school} — ${education.degree}`,
-    `GPA: ${education.gpa} | ${education.period}`,
-    "",
-    "WORK EXPERIENCE",
-    ...experience.flatMap((job) => [
-      `${job.role} | ${job.company} | ${job.period}`,
-      ...job.highlights.map((h) => `  • ${h}`),
-      `  Technologies: ${job.technologies.join(", ")}`,
-      "",
-    ]),
-    "PROJECTS",
-    ...featuredProjects.flatMap((p) => [
-      `${p.title} (${p.period})`,
-      p.description,
-      ...p.highlights.map((h) => `  • ${h}`),
-      `  Technologies: ${p.technologies.join(", ")}`,
-      "",
-    ]),
-    ...aiProjects.flatMap((p) => [
-      `${p.title} (${p.period})`,
-      p.description,
-      ...p.highlights.map((h) => `  • ${h}`),
-      `  Technologies: ${p.technologies.join(", ")}`,
-      "",
-    ]),
-    "TECHNICAL SKILLS",
-    ...skillCategories.map(
-      (cat) => `${cat.title}: ${cat.skills.map((s) => s.name).join(", ")}`
-    ),
-    "",
-    "LANGUAGES",
-    ...languages.map((l) => `${l.name}: ${l.level}`),
-    "",
-    "CERTIFICATES",
-    ...certificates.map((c) => `- ${c}`),
-    "",
-    "INTERESTS",
-    interests.join(", "),
-  ];
-
-  return lines.join("\n");
-}
 
 interface CvDownloadButtonProps extends ButtonProps {
   children?: React.ReactNode;
@@ -78,13 +14,65 @@ export function CvDownloadButton({
   className,
   ...props
 }: CvDownloadButtonProps) {
+  const { t } = useI18n();
+
   const handleDownload = () => {
-    const content = generateCvText();
+    const lines: string[] = [
+      personalInfo.name.toUpperCase(),
+      t.personal.title,
+      `${t.personal.location} | ${personalInfo.email} | ${personalInfo.phone}`,
+      `${personalInfo.linkedin} | ${personalInfo.github}`,
+      "",
+      t.cv.sections.summary,
+      ...t.about.summary.map((s) => `- ${s}`),
+      "",
+      t.cv.sections.education,
+      `${t.education.school} — ${t.education.degree}`,
+      `${t.education.gpaLabel}: ${t.education.gpa} | ${t.education.period}`,
+      "",
+      t.cv.sections.experience,
+      ...t.experience.items.flatMap((job) => [
+        `${job.role} | ${job.company} | ${job.period}`,
+        ...job.highlights.map((h) => `  • ${h}`),
+        `  ${t.cv.sections.technologies}: ${job.technologies.join(", ")}`,
+        "",
+      ]),
+      t.cv.sections.projects,
+      ...t.projects.items.flatMap((p) => [
+        `${p.title} (${p.period})`,
+        p.description,
+        ...p.highlights.map((h) => `  • ${h}`),
+        `  ${t.cv.sections.technologies}: ${p.technologies.join(", ")}`,
+        "",
+      ]),
+      ...t.aiProjects.items.flatMap((p) => [
+        `${p.title} (${p.period})`,
+        p.description,
+        ...p.highlights.map((h) => `  • ${h}`),
+        `  ${t.cv.sections.technologies}: ${p.technologies.join(", ")}`,
+        "",
+      ]),
+      t.cv.sections.skills,
+      ...t.skills.categories.map(
+        (cat) => `${cat.title}: ${cat.skills.map((s) => s.name).join(", ")}`
+      ),
+      "",
+      t.cv.sections.languages,
+      ...t.languages.map((l) => `${l.name}: ${l.level}`),
+      "",
+      t.cv.sections.certificates,
+      ...t.certificates.items.map((c) => `- ${c}`),
+      "",
+      t.cv.sections.interests,
+      t.interests.join(", "),
+    ];
+
+    const content = lines.join("\n");
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "Hidayet-Ciftci-CV.txt";
+    link.download = t.cv.filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -98,7 +86,7 @@ export function CvDownloadButton({
       className={cn(className)}
       {...props}
     >
-      {children ?? "Download CV"}
+      {children ?? t.hero.downloadCv}
     </Button>
   );
 }

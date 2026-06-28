@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Bot, Brain, Database, Sparkles } from "lucide-react";
-import { aiProjects } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/effects/fade-in";
@@ -10,6 +10,8 @@ import { FadeIn } from "@/components/effects/fade-in";
 const aiIcons = [Brain, Bot, Database, Sparkles];
 
 export function AiProjectsSection() {
+  const { t } = useI18n();
+
   return (
     <section
       id="ai-projects"
@@ -17,12 +19,12 @@ export function AiProjectsSection() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="AI Projects"
-          title="Intelligent systems & RAG"
-          description="Recent focus on LLM integrations, vector search, and production-grade AI pipelines."
+          eyebrow={t.aiProjects.eyebrow}
+          title={t.aiProjects.title}
+          description={t.aiProjects.description}
         />
 
-        {aiProjects.map((project, index) => (
+        {t.aiProjects.items.map((project, index) => (
           <FadeIn key={project.id} delay={index * 0.1}>
             <motion.article
               whileHover={{ scale: 1.005 }}

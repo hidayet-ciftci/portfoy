@@ -1,48 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons/social-icons";
 import { personalInfo } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/effects/fade-in";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-const contactLinks = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: personalInfo.email,
-    href: `mailto:${personalInfo.email}`,
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: personalInfo.phone,
-    href: `tel:${personalInfo.phone.replace(/\s/g, "")}`,
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: personalInfo.location,
-    href: null,
-  },
-  {
-    icon: GitHubIcon,
-    label: "GitHub",
-    value: "hidayetciftci",
-    href: personalInfo.github,
-  },
-  {
-    icon: LinkedInIcon,
-    label: "LinkedIn",
-    value: "hidayet-ciftci",
-    href: personalInfo.linkedin,
-  },
-];
-
 export function ContactSection() {
+  const { t } = useI18n();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -50,13 +19,49 @@ export function ContactSection() {
   });
   const [submitted, setSubmitted] = useState(false);
 
+  const contactLinks = useMemo(
+    () => [
+      {
+        icon: Mail,
+        label: t.contact.labels.email,
+        value: personalInfo.email,
+        href: `mailto:${personalInfo.email}`,
+      },
+      {
+        icon: Phone,
+        label: t.contact.labels.phone,
+        value: personalInfo.phone,
+        href: `tel:${personalInfo.phone.replace(/\s/g, "")}`,
+      },
+      {
+        icon: MapPin,
+        label: t.contact.labels.location,
+        value: t.personal.location,
+        href: null,
+      },
+      {
+        icon: GitHubIcon,
+        label: t.contact.labels.github,
+        value: personalInfo.githubUsername,
+        href: personalInfo.github,
+      },
+      {
+        icon: LinkedInIcon,
+        label: t.contact.labels.linkedin,
+        value: "hidayet-ciftci",
+        href: personalInfo.linkedin,
+      },
+    ],
+    [t]
+  );
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(
-      `Portfolio Contact from ${formState.name}`
+      `${t.contact.form.subjectPrefix} ${formState.name}`
     );
     const body = encodeURIComponent(
-      `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`
+      `${t.contact.form.name}: ${formState.name}\n${t.contact.form.email}: ${formState.email}\n\n${formState.message}`
     );
     window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
     setSubmitted(true);
@@ -66,9 +71,9 @@ export function ContactSection() {
     <section id="contact" className="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Contact"
-          title="Let's connect"
-          description="Open to junior full-stack roles, internships, and collaborative projects."
+          eyebrow={t.contact.eyebrow}
+          title={t.contact.title}
+          description={t.contact.description}
           align="center"
         />
 
@@ -120,7 +125,7 @@ export function ContactSection() {
                       htmlFor="name"
                       className="mb-1.5 block text-sm text-zinc-400"
                     >
-                      Name
+                      {t.contact.form.name}
                     </label>
                     <input
                       id="name"
@@ -131,7 +136,7 @@ export function ContactSection() {
                         setFormState({ ...formState, name: e.target.value })
                       }
                       className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-100 outline-none transition focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/20"
-                      placeholder="Your name"
+                      placeholder={t.contact.form.namePlaceholder}
                     />
                   </div>
                   <div>
@@ -139,7 +144,7 @@ export function ContactSection() {
                       htmlFor="email"
                       className="mb-1.5 block text-sm text-zinc-400"
                     >
-                      Email
+                      {t.contact.form.email}
                     </label>
                     <input
                       id="email"
@@ -150,7 +155,7 @@ export function ContactSection() {
                         setFormState({ ...formState, email: e.target.value })
                       }
                       className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-100 outline-none transition focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/20"
-                      placeholder="you@example.com"
+                      placeholder={t.contact.form.emailPlaceholder}
                     />
                   </div>
                   <div>
@@ -158,7 +163,7 @@ export function ContactSection() {
                       htmlFor="message"
                       className="mb-1.5 block text-sm text-zinc-400"
                     >
-                      Message
+                      {t.contact.form.message}
                     </label>
                     <textarea
                       id="message"
@@ -169,12 +174,12 @@ export function ContactSection() {
                         setFormState({ ...formState, message: e.target.value })
                       }
                       className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-100 outline-none transition focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/20"
-                      placeholder="Tell me about your project or opportunity..."
+                      placeholder={t.contact.form.messagePlaceholder}
                     />
                   </div>
                   <Button type="submit" className="w-full" size="lg">
                     <Send className="h-4 w-4" />
-                    {submitted ? "Opening email client..." : "Send message"}
+                    {submitted ? t.contact.form.sending : t.contact.form.send}
                   </Button>
                 </form>
               </CardContent>

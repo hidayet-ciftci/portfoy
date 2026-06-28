@@ -2,23 +2,25 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, FolderGit2 } from "lucide-react";
-import { featuredProjects } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/effects/fade-in";
 
 export function ProjectsSection() {
+  const { t } = useI18n();
+
   return (
     <section id="projects" className="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Featured Projects"
-          title="Selected work"
-          description="Enterprise systems, embedded defense tech, and full-stack applications."
+          eyebrow={t.projects.eyebrow}
+          title={t.projects.title}
+          description={t.projects.description}
         />
 
         <div className="grid gap-6 lg:grid-cols-2">
-          {featuredProjects.map((project, index) => (
+          {t.projects.items.map((project, index) => (
             <FadeIn key={project.id} delay={index * 0.1}>
               <motion.article
                 whileHover={{ y: -4 }}

@@ -1,8 +1,12 @@
+"use client";
+
 import { personalInfo } from "@/lib/data";
+import { useI18n } from "@/lib/i18n/context";
 import { Mail } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons/social-icons";
 
 export function Footer() {
+  const { t } = useI18n();
   const year = new Date().getFullYear();
 
   return (
@@ -11,7 +15,7 @@ export function Footer() {
         <div className="text-center sm:text-left">
           <p className="font-semibold text-zinc-200">{personalInfo.name}</p>
           <p className="mt-1 text-sm text-zinc-500">
-            {personalInfo.title} · {personalInfo.location}
+            {t.personal.title} · {t.personal.location}
           </p>
         </div>
 
@@ -21,7 +25,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="text-zinc-500 transition hover:text-emerald-400"
-            aria-label="GitHub profile"
+            aria-label={t.footer.githubAria}
           >
             <GitHubIcon className="h-5 w-5" />
           </a>
@@ -30,21 +34,21 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="text-zinc-500 transition hover:text-emerald-400"
-            aria-label="LinkedIn profile"
+            aria-label={t.footer.linkedinAria}
           >
             <LinkedInIcon className="h-5 w-5" />
           </a>
           <a
             href={`mailto:${personalInfo.email}`}
             className="text-zinc-500 transition hover:text-emerald-400"
-            aria-label="Send email"
+            aria-label={t.footer.emailAria}
           >
             <Mail className="h-5 w-5" />
           </a>
         </div>
 
         <p className="text-sm text-zinc-600">
-          © {year} {personalInfo.name}.
+          © {year} {personalInfo.name.split(" ")[0]}.
         </p>
       </div>
     </footer>
