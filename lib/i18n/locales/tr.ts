@@ -51,7 +51,7 @@ export const tr: Dictionary = {
     languages: "Diller",
     interests: "İlgi Alanları",
     internshipsCompleted: "Tamamlanan staj",
-    gpaLabel: "GNO",
+    gpaLabel: "GANO",
   },
   experience: {
     eyebrow: "Deneyim",
@@ -61,8 +61,8 @@ export const tr: Dictionary = {
     items: [
       {
         id: "ramsey",
-        role: "Full Stack Developer Stajyeri",
-        company: "Ramsey / Gürmen Teknoloji",
+        role: "Full Stack Developer Uzun Dönem Stajyeri",
+        company: "Gürmen Teknoloji / Ramsey",
         period: "Şub 2026 – May 2026",
         highlights: [
           "ASP.NET Core ve PostgreSQL ile Entity Framework Core kullanarak arka uç servisleri geliştirdim.",
@@ -306,12 +306,12 @@ export const tr: Dictionary = {
     eyebrow: "Eğitim",
     title: "Akademik geçmiş",
     description:
-      "Bilgisayar mühendisliğinde güçlü GNO ve sürekli pratik öğrenme.",
+      "Bilgisayar mühendisliğinde güçlü GANO ve sürekli pratik öğrenme.",
     school: "Karabük Üniversitesi",
     degree: "Bilgisayar Mühendisliği Lisans Derecesi",
     gpa: "3.19 / 4.00",
     period: "Eyl 2021 – Haz 2026",
-    gpaLabel: "GNO",
+    gpaLabel: "GANO",
     outOf: "4.00 üzerinden",
   },
   certificates: {
@@ -344,11 +344,12 @@ export const tr: Dictionary = {
       linkedin: "LinkedIn",
     },
     form: {
-      name: "Ad",
-      email: "E-posta",
-      message: "Mesaj",
+      name: "Ad:",
+      subject: "Konu: ",
+      introName: "Selamlar, Ben",
+      message: "Mesaj: ",
       namePlaceholder: "Adınız",
-      emailPlaceholder: "ornek@email.com",
+      subjectPlaceholder: "Tanışma Fırsatı",
       messagePlaceholder: "Projeniz veya fırsatınız hakkında bilgi verin...",
       send: "Mesaj gönder",
       sending: "E-posta istemcisi açılıyor...",

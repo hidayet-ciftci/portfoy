@@ -12,7 +12,7 @@ const GitHubCalendar = dynamic(
   {
     ssr: false,
     loading: () => <GitHubCalendarLoading />,
-  }
+  },
 );
 
 function GitHubCalendarLoading() {
@@ -45,8 +45,7 @@ export function GitHubSection() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-zinc-400 transition hover:text-emerald-400"
               >
-                <GitHubIcon className="h-4 w-4" />
-                @{personalInfo.githubUsername}
+                <GitHubIcon className="h-4 w-4" />@{personalInfo.githubUsername}
               </a>
             </div>
 

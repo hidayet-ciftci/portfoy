@@ -14,7 +14,7 @@ export function ContactSection() {
   const { t } = useI18n();
   const [formState, setFormState] = useState({
     name: "",
-    email: "",
+    subject: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -52,16 +52,16 @@ export function ContactSection() {
         href: personalInfo.linkedin,
       },
     ],
-    [t]
+    [t],
   );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(
-      `${t.contact.form.subjectPrefix} ${formState.name}`
+      `${t.contact.form.subjectPrefix} ${formState.subject}`,
     );
     const body = encodeURIComponent(
-      `${t.contact.form.name}: ${formState.name}\n${t.contact.form.email}: ${formState.email}\n\n${formState.message}`
+      `${t.contact.form.introName} ${formState.name} \n\n${formState.message}`,
     );
     window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
     setSubmitted(true);
@@ -89,7 +89,9 @@ export function ContactSection() {
                       </div>
                       <div>
                         <p className="text-xs text-zinc-500">{item.label}</p>
-                        <p className="font-medium text-zinc-200">{item.value}</p>
+                        <p className="font-medium text-zinc-200">
+                          {item.value}
+                        </p>
                       </div>
                     </CardContent>
                   </Card>
@@ -141,21 +143,20 @@ export function ContactSection() {
                   </div>
                   <div>
                     <label
-                      htmlFor="email"
+                      htmlFor="subject"
                       className="mb-1.5 block text-sm text-zinc-400"
                     >
-                      {t.contact.form.email}
+                      {t.contact.form.subject}
                     </label>
                     <input
-                      id="email"
-                      type="email"
+                      id="subject"
                       required
-                      value={formState.email}
+                      value={formState.subject}
                       onChange={(e) =>
-                        setFormState({ ...formState, email: e.target.value })
+                        setFormState({ ...formState, subject: e.target.value })
                       }
                       className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-100 outline-none transition focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/20"
-                      placeholder={t.contact.form.emailPlaceholder}
+                      placeholder={t.contact.form.subjectPlaceholder}
                     />
                   </div>
                   <div>

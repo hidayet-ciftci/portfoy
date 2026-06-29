@@ -147,10 +147,11 @@ export interface Dictionary {
     };
     form: {
       name: string;
-      email: string;
+      subject: string;
+      introName: string;
       message: string;
       namePlaceholder: string;
-      emailPlaceholder: string;
+      subjectPlaceholder: string;
       messagePlaceholder: string;
       send: string;
       sending: string;
