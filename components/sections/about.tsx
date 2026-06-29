@@ -54,7 +54,9 @@ export function AboutSection() {
                     <GraduationCap className="h-3.5 w-3.5" />
                     {t.about.education}
                   </p>
-                  <p className="font-medium text-zinc-200">{t.education.school}</p>
+                  <p className="font-medium text-zinc-200">
+                    {t.education.school}
+                  </p>
                   <p className="text-sm text-zinc-400">{t.education.degree}</p>
                   <p className="text-sm text-zinc-500">
                     {t.about.gpaLabel} {t.education.gpa} · {t.education.period}
