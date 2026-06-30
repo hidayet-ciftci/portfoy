@@ -47,10 +47,7 @@ export function ProjectsSection() {
 
                 <ul className="mt-4 space-y-1.5">
                   {project.highlights.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-2 text-sm text-zinc-500"
-                    >
+                    <li key={item} className="flex gap-2 text-sm text-zinc-500">
                       <ExternalLink className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500/60" />
                       {item}
                     </li>

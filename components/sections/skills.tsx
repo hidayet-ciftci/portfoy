@@ -3,7 +3,11 @@
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/effects/fade-in";
+import {
+  FadeIn,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/effects/fade-in";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function SkillBar({ name, level }: { name: string; level: number }) {
@@ -30,7 +34,7 @@ export function SkillsSection() {
   const { t } = useI18n();
 
   return (
-    <section id="skills" className="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="skills" className="scroll-mt-20 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow={t.skills.eyebrow}
@@ -58,12 +62,6 @@ export function SkillsSection() {
             </StaggerItem>
           ))}
         </StaggerContainer>
-
-        <FadeIn delay={0.2}>
-          <p className="mt-8 text-center text-sm text-zinc-600">
-            {t.skills.disclaimer}
-          </p>
-        </FadeIn>
       </div>
     </section>
   );

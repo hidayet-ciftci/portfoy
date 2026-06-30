@@ -3,14 +3,18 @@
 import { Award, GraduationCap } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/effects/fade-in";
+import {
+  FadeIn,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/effects/fade-in";
 import { Card, CardContent } from "@/components/ui/card";
 
 export function EducationSection() {
   const { t } = useI18n();
 
   return (
-    <section id="education" className="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="education" className="scroll-mt-20 px-4 py-14 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow={t.education.eyebrow}
@@ -59,7 +63,7 @@ export function CertificatesSection() {
   return (
     <section
       id="certificates"
-      className="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8"
+      className="scroll-mt-20 px-4 py-16 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading

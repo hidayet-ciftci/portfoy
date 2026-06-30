@@ -49,11 +49,11 @@ export function GitHubSection() {
               </a>
             </div>
 
-            <div className="github-calendar overflow-x-auto">
+            <div className="github-calendar overflow-x-auto flex justify-center">
               <GitHubCalendar
                 username={personalInfo.githubUsername}
                 colorScheme="dark"
-                blockSize={12}
+                blockSize={16}
                 blockMargin={4}
                 fontSize={12}
                 theme={{

@@ -90,7 +90,6 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     description: string;
-    disclaimer: string;
     categories: SkillCategory[];
   };
   projects: {

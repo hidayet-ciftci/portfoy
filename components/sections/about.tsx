@@ -11,16 +11,15 @@ export function AboutSection() {
   const { t } = useI18n();
 
   return (
-    <section id="about" className="scroll-mt-20 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="about" className="scroll-mt-20 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow={t.about.eyebrow}
-          title={t.about.title}
-          description={t.about.description}
-        />
-
         <div className="grid gap-8 lg:grid-cols-5">
           <FadeIn className="lg:col-span-3">
+            <SectionHeading
+              eyebrow={t.about.eyebrow}
+              title={t.about.title}
+              description={t.about.description}
+            />
             <div className="space-y-4 text-base leading-relaxed text-zinc-400">
               {t.about.summary.map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>

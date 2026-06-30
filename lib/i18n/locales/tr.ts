@@ -138,8 +138,7 @@ export const tr: Dictionary = {
     title: "Kullandığım teknolojiler",
     description:
       "Alanlara göre gruplandırılmış — ön yüz framework'lerinden yapay zeka altyapısına.",
-    disclaimer:
-      "Yeterlilik seviyeleri staj ve kişisel proje deneyimlerimi yansıtır — abartılı bir öz değerlendirme değildir.",
+
     categories: [
       {
         title: "Ön Yüz",

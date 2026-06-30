@@ -138,8 +138,6 @@ export const en: Dictionary = {
     title: "Technologies I work with",
     description:
       "Grouped by domain — from frontend frameworks to AI infrastructure.",
-    disclaimer:
-      "Proficiency levels reflect practical experience from internships and personal projects — not self-assessment inflation.",
     categories: [
       {
         title: "Frontend",
