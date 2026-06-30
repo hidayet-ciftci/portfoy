@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { useI18n } from "@/lib/i18n/context";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { useTheme } from "@/components/theme/theme-provider";
 
 export function Navbar() {
   const { t } = useI18n();
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -47,7 +49,7 @@ export function Navbar() {
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
           ? "border-b border-white/5 bg-[#030712]/80 backdrop-blur-xl"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <nav
@@ -65,7 +67,9 @@ export function Navbar() {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20 transition group-hover:bg-emerald-500/20">
             HC
           </span>
-          <span className="hidden sm:inline">{personalInfo.name.split(" ")[0]}</span>
+          <span className="hidden sm:inline">
+            {personalInfo.name.split(" ")[0]}
+          </span>
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">
@@ -79,7 +83,7 @@ export function Navbar() {
                     "rounded-md px-3 py-2 text-sm transition-colors",
                     activeSection === id
                       ? "text-emerald-400"
-                      : "text-zinc-400 hover:text-zinc-100"
+                      : "text-zinc-400 hover:text-zinc-100",
                   )}
                 >
                   {link.label}
@@ -91,6 +95,18 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <LanguageSwitcher />
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? t.nav.lightMode : t.nav.darkMode}
+            className="rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-zinc-100"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </button>
           <Button asChild size="sm" variant="outline">
             <a href="#contact">{t.nav.getInTouch}</a>
           </Button>
@@ -100,12 +116,28 @@ export function Navbar() {
           <LanguageSwitcher />
           <button
             type="button"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? t.nav.lightMode : t.nav.darkMode}
+            className="rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-zinc-100"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </button>
+          <button
+            type="button"
             className="rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-zinc-100"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={mobileOpen}
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </div>
       </nav>

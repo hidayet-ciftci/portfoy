@@ -21,6 +21,9 @@ export const en: Dictionary = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     mainNav: "Main navigation",
+    toggleTheme: "Toggle theme",
+    lightMode: "Light theme",
+    darkMode: "Dark theme",
   },
   hero: {
     greeting: "Hi, my name is",

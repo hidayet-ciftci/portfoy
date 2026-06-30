@@ -21,6 +21,9 @@ export const tr: Dictionary = {
     openMenu: "Menüyü aç",
     closeMenu: "Menüyü kapat",
     mainNav: "Ana navigasyon",
+    toggleTheme: "Temayı değiştir",
+    lightMode: "Açık tema",
+    darkMode: "Koyu tema",
   },
   hero: {
     greeting: "Merhaba, ben",

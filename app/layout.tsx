@@ -43,16 +43,16 @@ export default function RootLayout({
     <html
       lang="tr"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k='portfolio-locale';var s=localStorage.getItem(k);var n=navigator.language.toLowerCase();var l=s||(n.startsWith('en')?'en':n.startsWith('tr')?'tr':'tr');document.documentElement.lang=l;}catch(e){document.documentElement.lang='tr';}})();`,
+            __html: `(function(){try{var localeKey='portfolio-locale';var themeKey='portfolio-theme';var s=localStorage.getItem(localeKey);var t=localStorage.getItem(themeKey);var n=navigator.language.toLowerCase();var l=s||(n.startsWith('en')?'en':n.startsWith('tr')?'tr':'tr');document.documentElement.lang=l;document.documentElement.dataset.theme = t === 'light' ? 'light' : 'dark';}catch(e){document.documentElement.lang='tr';document.documentElement.dataset.theme='dark';}})();`,
           }}
         />
       </head>
-      <body className="min-h-full bg-[#030712] text-zinc-100">
+      <body className="min-h-full">
         <AppProviders>{children}</AppProviders>
       </body>
     </html>
