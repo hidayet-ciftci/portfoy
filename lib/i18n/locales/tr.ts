@@ -193,7 +193,7 @@ export const tr: Dictionary = {
   },
   projects: {
     eyebrow: "Öne Çıkan Projeler",
-    title: "Seçilmiş çalışmalar",
+    title: "Seçilmiş Projeler",
     description:
       "Kurumsal sistemler, gömülü savunma teknolojisi ve full-stack uygulamalar.",
     items: [
@@ -215,7 +215,6 @@ export const tr: Dictionary = {
           "Entity Framework Core",
           "JWT",
           "React Native",
-          "Expo",
         ],
       },
       {

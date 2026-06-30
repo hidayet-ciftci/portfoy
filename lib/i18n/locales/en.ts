@@ -26,7 +26,7 @@ export const en: Dictionary = {
     darkMode: "Dark theme",
   },
   hero: {
-    greeting: "Hi, my name is",
+    greeting: "Hello, I am",
     tagline:
       "I build scalable web & mobile applications — from React and Next.js frontends to ASP.NET Core backends and AI-powered systems with Hybrid RAG.",
     viewWork: "View my work",
@@ -192,7 +192,7 @@ export const en: Dictionary = {
   },
   projects: {
     eyebrow: "Featured Projects",
-    title: "Selected work",
+    title: "Selected projects",
     description:
       "Enterprise systems, embedded defense tech, and full-stack applications.",
     items: [
@@ -214,7 +214,6 @@ export const en: Dictionary = {
           "Entity Framework Core",
           "JWT",
           "React Native",
-          "Expo",
         ],
       },
       {
