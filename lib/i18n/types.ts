@@ -51,10 +51,13 @@ export interface Dictionary {
   };
   nav: {
     links: NavLink[];
+    toggleTheme: string;
+    lightMode: string;
     getInTouch: string;
     openMenu: string;
     closeMenu: string;
     mainNav: string;
+    darkMode: string;
   };
   hero: {
     greeting: string;

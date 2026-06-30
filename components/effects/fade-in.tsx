@@ -51,6 +51,7 @@ export function StaggerContainer({
   return (
     <motion.div
       initial="hidden"
+      animate="visible"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
       variants={{
@@ -72,7 +73,11 @@ export function StaggerItem({
   className?: string;
 }) {
   return (
-    <motion.div variants={fadeUp} transition={{ duration: 0.45 }} className={className}>
+    <motion.div
+      variants={fadeUp}
+      transition={{ duration: 0.45 }}
+      className={className}
+    >
       {children}
     </motion.div>
   );
